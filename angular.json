@@ -102,5 +102,7 @@
       }
     }
   },
-  "defaultProject": "test-frontend3"
+  "cli": {
+    "analytics": "cd876790-67b7-4c7d-8506-9b27493a8fba"
+  }
 }
