@@ -9,3 +9,37 @@ export interface IDiagnose {
   shortName: string,
   isPublic: boolean
 }
+
+export interface IResultJson {
+  encounter: {
+    date: string
+  },
+  conditions?: ICondition[]
+}
+
+export interface ICondition {
+  id: string,
+  onset_date: string
+  context: {
+    identifier: {
+      type: {
+        coding: [
+          {
+            system: string,
+            code: string
+          }
+        ]
+      },
+      value: string
+    }
+  },
+  code: {
+    coding: [
+      {
+        system: string,
+        code: string
+      }
+    ]
+  },
+  notes?: string,
+}

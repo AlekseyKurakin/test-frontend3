@@ -1,4 +1,5 @@
 @import 'styles/reset.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 body {
   display: flex;

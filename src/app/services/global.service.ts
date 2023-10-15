@@ -6,7 +6,7 @@ import {Injectable} from "@angular/core";
   providedIn: 'root'
 })
 export class GlobalService {
-  url = 'https://global.lakmus.org/'; //must be set in env file
+  url = 'http://localhost:3001/'; // 'https://global.lakmus.org/'; //must be set in env file
 
   static prepareOptions(params: HttpParams) {
     return {

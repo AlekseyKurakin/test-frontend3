@@ -6,7 +6,7 @@ import {GlobalService} from "./global.service";
   providedIn: 'root'
 })
 export class DiagnosesService {
-  path = 'Dictionaries/icpc2';
+  path = 'api/diagnoses'; //'Dictionaries/icpc2';
 
   constructor(
     private http: HttpClient,

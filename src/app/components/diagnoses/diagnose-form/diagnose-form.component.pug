@@ -1,17 +1,37 @@
-.diagnose-form
-  form('[formGroup]'='form' '(ngSubmit)'='onSubmit()')
-    .date-container
-      label(for='date') Дата:
-      input#date(type='date' 'formControlName'='date')
-    p Діагнози за ICPC-2
-    .userDiagnoses(
-      'formArrayName'='userDiagnoses'
-      '*ngFor'='let control of userDiagnosesControl.controls; let i = index;'
+form('[formGroup]'='form' '(ngSubmit)'='onSubmit()').diagnose-form
+  .date-container
+    p Дата:
+    input(
+      'type'='date'
+      'formControlName'='date'
+      '[min]'='todayDate'
     )
-      ng-container('[formGroupName]'='i')
+  p Діагнози за ICPC-2
+  .user-diagnoses
+    .user-diagnoses-list(
+      'formArrayName'='userDiagnoses'
+      '*ngFor'='let control of userDiagnosesControl.controls; let i = index'
+    )
+      ng-container(
+        '[formGroupName]'='i'
+      )
         .form-row
+          ng-select(
+            'formControlName'='diagnose'
+            '[hideSelected]'='true'
+            'placeholder'="Оберіть діагноз"
+          )
+            ng-option(
+              *ngFor='let diagnose of diagnoses; let name = index'
+              '[value]'='diagnose'
+            )
+              span('title' = '{{diagnose.code + " " + diagnose.name}}') {{ diagnose.code + ' ' + diagnose.name  }}
+          input('type'='comment' 'formControlName'='comment' 'placeholder'='коментар')
+    button.add('type'='button' '(click)'='onAddControl()') + додати ще
+  button.create Сформулювати JSON
+  .diagnose-form-json-result
+    p JSON
+    textarea(
+      '[readOnly]'='true'
+    ) {{ jsonResult }}
 
-          select#userDiagnose('formControlName'='userDiagnose' required='true')
-            option('*ngFor'='let diagnose of diagnoses') {{ diagnose.name }}
-            input#comment('type'='comment' 'formControlName'='comment' 'placeholder'='коментар')
-    button Додати ще
