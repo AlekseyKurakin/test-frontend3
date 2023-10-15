@@ -1,0 +1,17 @@
+.diagnose-form
+  form('[formGroup]'='form' '(ngSubmit)'='onSubmit()')
+    .date-container
+      label(for='date') Дата:
+      input#date(type='date' 'formControlName'='date')
+    p Діагнози за ICPC-2
+    .userDiagnoses(
+      'formArrayName'='userDiagnoses'
+      '*ngFor'='let control of userDiagnosesControl.controls; let i = index;'
+    )
+      ng-container('[formGroupName]'='i')
+        .form-row
+
+          select#userDiagnose('formControlName'='userDiagnose' required='true')
+            option('*ngFor'='let diagnose of diagnoses') {{ diagnose.name }}
+            input#comment('type'='comment' 'formControlName'='comment' 'placeholder'='коментар')
+    button Додати ще
