@@ -63,7 +63,10 @@ export class DiagnoseFormComponent implements OnInit, OnDestroy {
       IsPublic: true,
       ...(search && { search })
     }).pipe(
-      catchError(error => throwError(error))
+      catchError((error) => {
+        this.diagnoses = mockData; // this line shouldn't exist. Added in case if endpoint doesn't work because of cors error
+        return throwError(error)
+      })
     ).subscribe((diagnoses: IDiagnose[]) => {
       this.diagnoses = diagnoses;
     })
